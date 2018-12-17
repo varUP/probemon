@@ -1,10 +1,14 @@
 This is a modifcation of NickHarris0/probemon which captures proberequests, compares it against a database or CSV 
 then reads the "would be intruders" mac address back to them. 
 
-This is intended to be housed in a garden gnome. I am calling it, probeGnome. 
+The other day I had a package stolen off of my front porch, and I thought, "Hey, why dont I just scan for probe requests and then read it back to the theif"?
+So, I used probemon on a raspi running kali linux with an Alpha wireless card. I then modified probemon to trigger when it reads a new proberequest that is 
+not on a "whitelist" of OK MAC addresses. If a new MAC / Device is foung, it then reads it out over a speaker using espeak.
+I then put it onto a gnome and Called it probeGnome. 
 
+It's best to get a gnome that really conveys how you feel about amazon package thieves.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/UP-qNT3czHg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![probeGnome On YouTube](http://img.youtube.com/vi/UP-qNT3czHg/0.jpg)](http://www.youtube.com/watch?v=UP-qNT3czHg "probeGnome")
 
 
 
