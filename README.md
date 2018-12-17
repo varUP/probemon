@@ -48,7 +48,7 @@ From there, navigate to the probemon directory and go:
 
 if you want, you can add a cool text image if you think that makes it look cooler. I kinda do think that.
 
-![probeGnome!](subfolder/image.png)
+![probeGnome!](subfolder/image2.png)
 
 # probemon
 A simple command line tool for monitoring and logging 802.11 probe frames
