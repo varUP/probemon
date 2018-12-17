@@ -9,7 +9,7 @@ import logging
 from scapy.all import *
 from pprint import pprint
 from logging.handlers import RotatingFileHandler
-
+from whitelist import *
 
 NAME = 'probemon'
 DESCRIPTION = "a command line tool for logging 802.11 probe request frames"
@@ -45,6 +45,7 @@ def build_packet_callback(time_fmt, logger, delimiter, mac_info, ssid, rssi):
 			try:
 				parsed_mac = netaddr.EUI(packet.addr2)
 				fields.append(parsed_mac.oui.registration().org)
+				white(packet.addr2, parsed_mac.oui.registration().org)
 			except netaddr.core.NotRegisteredError, e:
 				fields.append('UNKNOWN')
 
@@ -53,8 +54,12 @@ def build_packet_callback(time_fmt, logger, delimiter, mac_info, ssid, rssi):
 			fields.append(packet.info)
 			
 		if rssi:
-			rssi_val = -(256-ord(packet.notdecoded[-4:-3]))
-			fields.append(str(rssi_val))
+			if len(packet.notdecoded[-4:-3]) == 0:
+				rssi_val = 0
+				fields.append(str(rssi_val))
+			else:
+				rssi_val = -(256-ord(packet.notdecoded[-4:-3]))
+				fields.append(str(rssi_val))
 
 		logger.info(delimiter.join(fields))
 
@@ -67,7 +72,7 @@ def main():
 	parser.add_argument('-o', '--output', default='probemon.log', help="logging output location")
 	parser.add_argument('-b', '--max-bytes', default=5000000, help="maximum log size in bytes before rotating")
 	parser.add_argument('-c', '--max-backups', default=99999, help="maximum number of log files to keep")
-	parser.add_argument('-d', '--delimiter', default='\t', help="output field delimiter")
+	parser.add_argument('-d', '--delimiter', default=',', help="output field delimiter")
 	parser.add_argument('-f', '--mac-info', action='store_true', help="include MAC address manufacturer")
 	parser.add_argument('-s', '--ssid', action='store_true', help="include probe SSID in output")
 	parser.add_argument('-r', '--rssi', action='store_true', help="include rssi in output")

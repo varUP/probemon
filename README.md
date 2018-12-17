@@ -10,6 +10,42 @@ It's best to get a gnome that really conveys how you feel about amazon package t
 
 [![probeGnome On YouTube](http://img.youtube.com/vi/UP-qNT3czHg/0.jpg)](http://www.youtube.com/watch?v=UP-qNT3czHg "probeGnome")
 
+Notes:
+probemon uses python2.7
+
+Dependencies:
+
+netaddr
+scapy
+espeak
+
+or pip install requirements.txt
+
+
+You'll need to do some reading to figure out how to set up kali on a raspi.
+
+https://null-byte.wonderhowto.com/how-to/set-up-headless-raspberry-pi-hacking-platform-running-kali-linux-0176182/
+
+https://null-byte.wonderhowto.com/how-to/log-wi-fi-probe-requests-from-smartphones-laptops-with-probemon-0176303/
+
+Finally, this guy is really the dude behind it all. 
+
+https://nikharris.com/tracking-people/
+
+get some speakers and make sure that espeak is working. You could also use this to turn on a camera and start logging, really, this acts as a trigger for an action. 
+
+From there
+
+To use, make sure that you have attached you alpha wireless card via USB. and set it in monitor mode
+
+`airmon-ng start wlan0`
+
+or whatever your alpha wireless card is listed as <wlan0>. 
+
+From there, navigate to the probemon directory and go:
+
+`python probemon.py -i wlan0mon -t unix -o ~/Loggin -f -s -r`
+
 
 
 # probemon
